@@ -11,9 +11,6 @@ steps:
     "$_SERVICE_NAME",
     "--image",
     "gcr.io/$PROJECT_ID/$_SERVICE_NAME:$COMMIT_SHA",
-    PhD Ivan Rovetskyi “Technologies of distributed systems and parallel computing”
-      Laboratory practice
-      7
     "--region",
     "$_DEPLOY_REGION",
     "--platform",
