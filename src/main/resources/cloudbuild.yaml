@@ -1,0 +1,28 @@
+steps:
+  - name: 'gcr.io/cloud-builders/docker'
+    args: ['build', '--tag', 'gcr.io/$PROJECT_ID/$_SERVICE_NAME:$COMMIT_SHA', '.']
+  - name: 'gcr.io/cloud-builders/docker'
+    args: ['push', 'gcr.io/$PROJECT_ID/$_SERVICE_NAME:$COMMIT_SHA']
+  - name: "gcr.io/cloud-builders/gcloud"
+    args:
+        [
+    "run",
+    "deploy",
+    "$_SERVICE_NAME",
+    "--image",
+    "gcr.io/$PROJECT_ID/$_SERVICE_NAME:$COMMIT_SHA",
+    PhD Ivan Rovetskyi “Technologies of distributed systems and parallel computing”
+      Laboratory practice
+      7
+    "--region",
+    "$_DEPLOY_REGION",
+    "--platform",
+    "managed",
+    "--allow-unauthenticated"
+  ]
+options:
+  logging: CLOUD_LOGGING_ONLY
+images: [gcr.io/$PROJECT_ID/$_SERVICE_NAME:$COMMIT_SHA]
+substitutions:
+  _SERVICE_NAME: simple-spring-app-cicd
+  _DEPLOY_REGION: us-central1
