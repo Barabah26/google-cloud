@@ -9,6 +9,6 @@ public class TestResources {
 
     @GetMapping("resources/{name}")
     public String getName(@PathVariable String name) {
-        return "Hello " + name;
+        return "My latest chages " + name;
     }
 }
